@@ -31,6 +31,4 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
     @Override
     List<Restaurant> findAll();
 
-    Restaurant getByEmail(String email);
-
 }

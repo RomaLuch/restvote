@@ -1,15 +1,31 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity {
 
+    @Column(name = "adress", nullable = false)
+    @NotBlank
+    @Size(min = 5, max = 100)
     private String adress;
-    private Integer reiting;
 
-    public Restaurant(Integer id, String name, String adress, Integer reiting) {
+    @Column(name = "rating", columnDefinition = "int default 0")
+    private Integer rating;
+
+    public Restaurant(Integer id, String name, String adress, Integer rating) {
         super(id, name);
         this.adress = adress;
-        this.reiting = reiting;
+        this.rating = rating;
         }
+
+    public Restaurant() {
+    }
 
     public String getAdress() {
         return adress;
@@ -19,12 +35,12 @@ public class Restaurant extends AbstractNamedEntity {
         this.adress = adress;
     }
 
-    public Integer getReiting() {
-        return reiting;
+    public Integer getRating() {
+        return rating;
     }
 
-    public void setReiting(Integer reiting) {
-        this.reiting = reiting;
+    public void setRating(Integer reiting) {
+        this.rating = reiting;
     }
 
     @Override
@@ -33,7 +49,7 @@ public class Restaurant extends AbstractNamedEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", adress='" + adress + '\'' +
-                ", reiting=" + reiting +
+                ", reiting=" + rating +
                 '}';
     }
 }
