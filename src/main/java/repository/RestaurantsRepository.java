@@ -5,7 +5,7 @@ import model.Restaurant;
 
 import java.util.List;
 
-public interface DataJpaRestaurantsRepository {
+public interface RestaurantsRepository {
 
     Restaurant save(Restaurant restaurant);
 

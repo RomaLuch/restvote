@@ -4,10 +4,7 @@ import model.User;
 
 import java.util.List;
 
-/**
- * Created by RLuchinsky on 18.05.2018.
- */
-public interface DataJpaUserRepository {
+public interface UserRepository {
 
     User save(User user);
 
