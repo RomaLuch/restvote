@@ -9,9 +9,9 @@ INSERT INTO restaurants (name, adress, rating) VALUES
   ('Евразия', 'Сестрорецк', 0),
   ('Улыбка', 'Зеленогорск', 0);
 
-INSERT INTO users (name, email, password, rest_id) VALUES
-  ('User', 'user@yandex.ru', '{noop}password', 100000),
-  ('Admin', 'admin@gmail.com', '{noop}admin', 100000);
+INSERT INTO users (name, email, password) VALUES
+  ('User', 'user@yandex.ru', '{noop}password'),
+  ('Admin', 'admin@gmail.com', '{noop}admin');
 
 INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_USER', 100003),
@@ -31,6 +31,11 @@ INSERT INTO menu (name, price, rest_id) VALUES
   ('Солянка', 70, 100002),
   ('Греча', 30, 100002),
   ('Говядина', 70, 100002);
+
+INSERT INTO votes (USER_ID, REST_ID) VALUES
+  (100003,100002),
+  (100004,100002);
+
 
 
 
