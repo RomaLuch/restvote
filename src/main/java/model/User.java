@@ -1,32 +1,50 @@
 package model;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import java.util.Set;
 
 /**
  * Created by RLuchinsky on 18.05.2018.
  */
+
+@Entity
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
+
 public class User extends AbstractNamedEntity{
 
+    @Column(name = "email", nullable = false, unique = true)
+    @Email
+    @NotBlank
+    @Size(max = 100)
     private String email;
 
+    @Column(name = "password", nullable = false)
+    @NotBlank
+    @Size(min = 5, max = 100)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
-
-    private int rest_Id;
 
 /*    protected User(Integer id, String name) {
         super(id, name);
     }*/
 
-    public User(Integer id, String name, String email, String password, Set<Role> roles, int rest_Id) {
+    public User(Integer id, String name, String email, String password, Set<Role> roles) {
         super(id, name);
         this.email = email;
         this.password = password;
         this.roles = roles;
-        this.rest_Id = rest_Id;
+    }
+
+    public User() {
     }
 
     public String getEmail() {
@@ -53,13 +71,6 @@ public class User extends AbstractNamedEntity{
         this.roles = roles;
     }
 
-    public int getRest_Id() {
-        return rest_Id;
-    }
-
-    public void setRest_Id(int rest_Id) {
-        this.rest_Id = rest_Id;
-    }
 
     @Override
     public String toString() {
@@ -68,7 +79,6 @@ public class User extends AbstractNamedEntity{
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
-                ", rest_Id=" + rest_Id +
                 ", name='" + name + '\'' +
                 '}';
     }
