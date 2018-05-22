@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 import static service.RestaurantTestData.*;
 
 
+
 /**
  * Created by RLuchinsky on 21.05.2018.
  */
@@ -40,12 +41,14 @@ public class RestaurantServiceImplTest {
 
     @Test
     public void delete() throws Exception {
-
+        service.delete(TOKIO_ID);
+        service.delete(EVRASIA_ID);
+        assertMatch(service.getAll(), ULIBKA);
     }
 
     @Test
     public void get() throws Exception {
-
+        assertMatch(service.get(TOKIO_ID),TOKIO);
     }
 
     @Test

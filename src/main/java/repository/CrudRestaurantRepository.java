@@ -23,7 +23,7 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
 
     @Override
     @Transactional
-    Restaurant save(Restaurant user);
+    Restaurant save(Restaurant restaurant);
 
     @Override
     Optional<Restaurant> findById(Integer id);

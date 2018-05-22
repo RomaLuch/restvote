@@ -44,6 +44,24 @@ public class Restaurant extends AbstractNamedEntity {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Restaurant that = (Restaurant) o;
+
+        if (adress != null ? !adress.equals(that.adress) : that.adress != null) return false;
+        return rating != null ? rating.equals(that.rating) : that.rating == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = adress != null ? adress.hashCode() : 0;
+        result = 31 * result + (rating != null ? rating.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Restaurant{" +
                 "id=" + id +

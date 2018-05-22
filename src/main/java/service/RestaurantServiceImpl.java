@@ -23,18 +23,18 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant create() {
-        return null;
+    public Restaurant create(Restaurant restaurant) {
+        return repository.save(restaurant);
     }
 
     @Override
     public void delete(int id) throws NotFoundException {
-
+        repository.delete(id);
     }
 
     @Override
     public Restaurant get(int id) throws NotFoundException {
-        return null;
+        return repository.get(id);
     }
 
     @Override
@@ -44,6 +44,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void update(Restaurant restaurant) {
-
+        repository.save(restaurant);
     }
 }

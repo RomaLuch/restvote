@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface RestaurantService {
 
-    Restaurant create();
+    Restaurant create(Restaurant restaurant);
 
     void delete(int id) throws NotFoundException;
 
