@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface MenuService {
 
-    Menu create( Menu menu);
+    Menu create(Menu menu, int restId);
 
     void delete(int id) throws NotFoundException;
 

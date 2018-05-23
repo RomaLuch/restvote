@@ -11,7 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static service.MenuTestData.*;
+import static service.RestaurantTestData.ULIBKA;
 import static service.RestaurantTestData.ULIBKA_ID;
 
 /**
@@ -33,29 +34,37 @@ public class MenuServiceImplTest {
 
     @Test
     public void create() throws Exception {
-
+        Menu menu = new Menu(null, "New", 0);
+        Menu created = service.create(menu, ULIBKA_ID);
+        menu.setId(created.getId());
+        assertMatch(service.getAll(ULIBKA_ID), ULIBKA_MENU_1, ULIBKA_MENU_2, ULIBKA_MENU_3, menu);
     }
 
     @Test
     public void delete() throws Exception {
-
+        service.delete(100012);
+        service.delete(100013);
+        assertMatch(service.getAll(ULIBKA_ID), ULIBKA_MENU_1);
     }
 
     @Test
     public void get() throws Exception {
-
+        assertMatch(service.get(SOLYANKA_ID),ULIBKA_MENU_1);
     }
 
     @Test
     public void getAll() throws Exception {
         List<Menu> all = service.getAll(ULIBKA_ID);
-
-        all.stream().forEach(System.out::println);
+        assertMatch(all, ULIBKA_MENU_1, ULIBKA_MENU_2, ULIBKA_MENU_3);
     }
 
     @Test
     public void update() throws Exception {
-
+        Menu updated = new Menu (ULIBKA_MENU_1);
+        updated.setName("NEW MENU");
+        updated.setRestaurant(ULIBKA);
+        service.update(updated);
+        assertMatch(service.get(SOLYANKA_ID), updated);
     }
 
 }

@@ -16,10 +16,15 @@ public class DataJpaMenuRepository implements MenuRepository {
     @Autowired
     private CrudMenuRepository crudMenuRepository;
 
+    @Autowired
+
+    private CrudRestaurantRepository crudRestaurantRepository;
+
     @Override
     @Transactional
-    public Menu save(Menu restaurant) {
-        return crudMenuRepository.save(restaurant);
+    public Menu save(Menu menu, int restId) {
+        menu.setRestaurant(crudRestaurantRepository.getOne(restId));
+        return crudMenuRepository.save(menu);
     }
 
     @Override

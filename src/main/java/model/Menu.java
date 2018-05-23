@@ -22,6 +22,10 @@ private Integer price;
         this.price = price;
     }
 
+    public Menu(Menu m) {
+        this(m.id, m.name, m.price);
+    }
+
     public Menu() {
     }
 

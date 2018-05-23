@@ -24,8 +24,8 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu create(Menu menu) {
-        return repository.save(menu);
+    public Menu create(Menu menu, int restId) {
+        return repository.save(menu, restId);
     }
 
     @Override
@@ -45,6 +45,6 @@ repository.delete(id);
 
     @Override
     public void update(Menu menu) {
-repository.save(menu);
+        repository.save(menu, menu.getRestaurant().getId()); //Can throw NPE
     }
 }

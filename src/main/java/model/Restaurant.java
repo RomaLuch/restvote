@@ -24,6 +24,10 @@ public class Restaurant extends AbstractNamedEntity {
         this.rating = rating;
         }
 
+    public Restaurant(Restaurant r) {
+        this(r.id, r.name, r.adress, r.rating);
+    }
+
     public Restaurant() {
     }
 

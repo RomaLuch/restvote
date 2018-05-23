@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface MenuRepository {
 
-    Menu save(Menu restaurant);
+    Menu save(Menu restaurant, int restId);
 
     boolean delete(int id);
 

@@ -1,5 +1,6 @@
 package service;
 
+import model.Menu;
 import model.Restaurant;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,11 +10,11 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+
 import static service.RestaurantTestData.*;
 
 
@@ -36,7 +37,10 @@ public class RestaurantServiceImplTest {
 
     @Test
     public void create() throws Exception {
-
+        Restaurant restaurant = new Restaurant(null, "New", "newAdress", 0);
+        Restaurant created = service.create(restaurant);
+        restaurant.setId(created.getId());
+        assertMatch(service.getAll(), TOKIO, EVRASIA, ULIBKA, restaurant);
     }
 
     @Test
@@ -60,7 +64,10 @@ public class RestaurantServiceImplTest {
 
     @Test
     public void update() throws Exception {
-
+        Restaurant updated = new Restaurant(TOKIO);
+        updated.setName("2PALKI");
+        service.update(updated);
+        assertMatch(service.get(TOKIO_ID), updated);
     }
 
 }
