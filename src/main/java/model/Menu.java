@@ -12,7 +12,7 @@ public class Menu extends AbstractNamedEntity{
 @Column(name = "price", columnDefinition = "int default 0")
 private Integer price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rest_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Restaurant restaurant;

@@ -13,6 +13,7 @@ import java.util.List;
  */
 
 @Service
+
 public class MenuServiceImpl implements MenuService {
 
     private MenuRepository repository;

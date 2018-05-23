@@ -25,6 +25,6 @@ public interface CrudMenuRepository extends JpaRepository<Menu, Integer> {
     @Transactional
     Menu save(Menu menu);
 
-    @Query("SELECT m FROM Menu m WHERE m.user.id=:userId ORDER BY m.dateTime DESC")
-    List<Menu> getAll(@Param("userId") int userId);
+    @Query("SELECT m FROM Menu m WHERE m.restaurant.id=:restId")
+    List<Menu> getAll(@Param("restId") int restId);
 }
