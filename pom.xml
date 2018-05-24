@@ -69,6 +69,12 @@
             <version>${spring-data-jpa.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+
 
         <!--- ORM -->
         <dependency>
@@ -118,6 +124,7 @@
             <version>3.9.1</version>
             <scope>test</scope>
         </dependency>
+
 
     </dependencies>
 
