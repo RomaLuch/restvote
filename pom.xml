@@ -20,6 +20,7 @@
         <spring.version>5.0.4.RELEASE</spring.version>
         <spring-data-jpa.version>2.0.5.RELEASE</spring-data-jpa.version>
 
+        <jackson-json.version>2.9.5</jackson-json.version>
 
         <!-- Hibernate -->
         <hibernate.version>5.2.15.Final</hibernate.version>
@@ -74,6 +75,13 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
 
+        <!--JSON-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-json.version}</version>
+        </dependency>
+
 
 
         <!--- ORM -->
@@ -117,6 +125,7 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
+
 
         <dependency>
             <groupId>org.assertj</groupId>
