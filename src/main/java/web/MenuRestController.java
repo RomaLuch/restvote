@@ -53,7 +53,7 @@ public class MenuRestController {
 //        httpHeaders.setLocation(uriOfNewResource);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(MENU_REST_URL + "/{id}")
+                .path("/menu/"+ restId + "/{id}")
                 .buildAndExpand(created.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(created);
