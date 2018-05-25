@@ -25,6 +25,11 @@
 <p>Или конкретный ресторан:</p>
 <a href="restaurants/100000">reataurants/100000</a>
 
+<p>меню ресторана:</p>
+<a href="menu/100000">/menu/100000</a>
+<p>Или конкретное блюдо:</p>
+<a href="menu/100000/100005">menu/100000/100005</a>
+
 <h2>Тест put, delete, post запросов - можно осуществить с помощи <a href="https://www.soapui.org/" target="_blank" a>SoupUi</a></h2>
 </body>
 </html>

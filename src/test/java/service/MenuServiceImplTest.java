@@ -63,7 +63,7 @@ public class MenuServiceImplTest {
         Menu updated = new Menu (ULIBKA_MENU_1);
         updated.setName("NEW MENU");
         updated.setRestaurant(ULIBKA);
-        service.update(updated);
+        service.update(updated, ULIBKA_ID);
         assertMatch(service.get(SOLYANKA_ID), updated);
     }
 

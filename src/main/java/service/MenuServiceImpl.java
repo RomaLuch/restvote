@@ -44,7 +44,7 @@ repository.delete(id);
     }
 
     @Override
-    public void update(Menu menu) {
-        repository.save(menu, menu.getRestaurant().getId()); //Can throw NPE
+    public void update(Menu menu, int restId) {
+        repository.save(menu, restId);
     }
 }

@@ -18,5 +18,5 @@ public interface MenuService {
 
     List<Menu> getAll(int restId);
 
-    void update(Menu menu);
+    void update(Menu menu, int restId);
 }
