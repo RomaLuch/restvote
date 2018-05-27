@@ -41,11 +41,13 @@ public class MenuRestController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@RequestBody Menu menu, @PathVariable("restId") int restId) {
         service.update(menu, restId);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<Menu> createWithLocation(@RequestBody Menu menu, @PathVariable("restId") int restId) {
         Menu created = service.create(menu, restId);
 
@@ -58,6 +60,4 @@ public class MenuRestController {
 
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
-
-
 }

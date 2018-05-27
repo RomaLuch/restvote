@@ -43,11 +43,13 @@ public class UserRestController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@RequestBody User user) {
         service.update(user);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<User> createWithLocation(@RequestBody User user) {
         User created = service.create(user);
 

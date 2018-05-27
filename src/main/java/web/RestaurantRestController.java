@@ -37,16 +37,17 @@ public class RestaurantRestController {
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") int id) {
-        System.out.println("DELETE");
         service.delete(id);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@RequestBody Restaurant restaurant) {
         service.update(restaurant);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant) {
         Restaurant created = service.create(restaurant);
 
