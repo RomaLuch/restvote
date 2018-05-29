@@ -18,6 +18,10 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
 
     @Override
     public User save(User user) {
+        if (!user.isNew() && get(user.getId()) == null) {
+            return null;
+        }
+
         return crudRepository.save(user);
     }
 

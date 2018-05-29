@@ -8,6 +8,8 @@ import repository.UserRepository;
 
 import java.util.List;
 
+import static util.ValidationUtil.checkNotFoundWithId;
+
 /**
  * Created by RLuchinsky on 21.05.2018.
  */
@@ -29,12 +31,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(int id) throws NotFoundException {
-        repository.delete(id);
+        checkNotFoundWithId(repository.delete(id), id);
     }
 
     @Override
     public User get(int id) throws NotFoundException {
-        return repository.get(id);
+        return checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override
@@ -44,7 +46,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user) {
-        repository.save(user);
+        checkNotFoundWithId(repository.save(user), user.getId());
     }
 
     @Override

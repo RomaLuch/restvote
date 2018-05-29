@@ -1,5 +1,6 @@
 package service;
 
+import exception.NotFoundException;
 import model.Role;
 import model.User;
 import org.junit.After;
@@ -79,9 +80,24 @@ public class UserServiceImplTest {
 
     @Test
     public void getAll() throws Exception {
-
         List<User> all = service.getAll();
         assertMatch(all, USER, ADMIN);
     }
+    @Test(expected = NotFoundException.class) //todo not work
+    public void updateNotFound() throws Exception {
+        User updated = new User(USER);
+        updated.setId(100100);
+        updated.setName("UpdatedName");
+        updated.setEmail("1@1.ru");
+        service.update(updated);
+    }
+    @Test (expected = NotFoundException.class)
+    public void deleteNotFound() throws Exception {
+        service.delete(100100);
+    }
 
+    @Test (expected = NotFoundException.class)
+    public void getNotFound() throws Exception {
+        service.get(100100);
+    }
 }
