@@ -83,7 +83,7 @@ public class UserServiceImplTest {
         List<User> all = service.getAll();
         assertMatch(all, USER, ADMIN);
     }
-    @Test(expected = NotFoundException.class) //todo not work
+    @Test(expected = NotFoundException.class)
     public void updateNotFound() throws Exception {
         User updated = new User(USER);
         updated.setId(100100);
