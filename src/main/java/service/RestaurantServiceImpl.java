@@ -8,6 +8,8 @@ import repository.RestaurantsRepository;
 
 import java.util.List;
 
+import static util.ValidationUtil.checkNotFoundWithId;
+
 /**
  * Created by RLuchinsky on 21.05.2018.
  */
@@ -29,12 +31,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void delete(int id) throws NotFoundException {
-        repository.delete(id);
+        checkNotFoundWithId(repository.delete(id),id);
     }
 
     @Override
     public Restaurant get(int id) throws NotFoundException {
-        return repository.get(id);
+        return checkNotFoundWithId(repository.get(id),id);
     }
 
     @Override
@@ -44,6 +46,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void update(Restaurant restaurant) {
-        repository.save(restaurant);
+        checkNotFoundWithId(repository.save(restaurant),restaurant.getId());
     }
 }

@@ -17,6 +17,9 @@ public class DataJpaRestaurantRepository implements RestaurantsRepository {
 
     @Override
     public Restaurant save(Restaurant restaurant) {
+        if (!restaurant.isNew() && get(restaurant.getId()) == null) {
+            return null;
+        }
         return crudRestaurantRepository.save(restaurant);
     }
 

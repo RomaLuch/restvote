@@ -1,5 +1,6 @@
 package service;
 
+import exception.NotFoundException;
 import model.Menu;
 import model.Restaurant;
 import org.junit.Test;
@@ -70,4 +71,22 @@ public class RestaurantServiceImplTest {
         assertMatch(service.get(TOKIO_ID), updated);
     }
 
+    @Test(expected = NotFoundException.class)
+    public void updateNotFound() throws Exception
+    {
+        Restaurant updated = new Restaurant(EVRASIA);
+        updated.setId(100100);
+        updated.setName("UpdatedName");
+        service.update(updated);
+    }
+
+    @Test (expected = NotFoundException.class)
+    public void deleteNotFound() throws Exception {
+        service.delete(100100);
+    }
+
+    @Test (expected = NotFoundException.class)
+    public void getNotFound() throws Exception {
+        service.get(100100);
+    }
 }

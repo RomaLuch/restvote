@@ -1,5 +1,6 @@
 package service;
 
+import exception.NotFoundException;
 import model.Menu;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -65,6 +66,25 @@ public class MenuServiceImplTest {
         updated.setRestaurant(ULIBKA);
         service.update(updated, ULIBKA_ID);
         assertMatch(service.get(SOLYANKA_ID), updated);
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void updateNotFound() throws Exception
+    {
+        Menu updated = new Menu(ULIBKA_MENU_1);
+        updated.setId(100100);
+        updated.setName("UpdatedName");
+        service.update(updated, ULIBKA_ID);
+    }
+
+    @Test (expected = NotFoundException.class)
+    public void deleteNotFound() throws Exception {
+        service.delete(100100);
+    }
+
+    @Test (expected = NotFoundException.class)
+    public void getNotFound() throws Exception {
+        service.get(100100);
     }
 
 }

@@ -8,6 +8,8 @@ import repository.MenuRepository;
 
 import java.util.List;
 
+import static util.ValidationUtil.checkNotFoundWithId;
+
 /**
  * Created by RLuchinsky on 23.05.2018.
  */
@@ -30,12 +32,12 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public void delete(int id) throws NotFoundException {
-repository.delete(id);
+        checkNotFoundWithId(repository.delete(id),id);
     }
 
     @Override
     public Menu get(int id) throws NotFoundException {
-        return repository.get(id);
+        return checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override
@@ -45,6 +47,6 @@ repository.delete(id);
 
     @Override
     public void update(Menu menu, int restId) {
-        repository.save(menu, restId);
+        checkNotFoundWithId(repository.save(menu, restId),menu.getId());
     }
 }
