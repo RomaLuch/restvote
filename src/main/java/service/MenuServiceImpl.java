@@ -1,5 +1,7 @@
 package service;
 
+import authorized.AuthorizedUser;
+import exception.NotAccessException;
 import exception.NotFoundException;
 import model.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import repository.MenuRepository;
 import java.util.List;
 
 import static util.ValidationUtil.checkNotFoundWithId;
+import static util.ValidationUtil.hasAccess;
 
 /**
  * Created by RLuchinsky on 23.05.2018.
@@ -27,11 +30,13 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Menu create(Menu menu, int restId) {
+        if(!hasAccess()) {throw new NotAccessException("you do not have access rights");}
         return repository.save(menu, restId);
     }
 
     @Override
     public void delete(int id) throws NotFoundException {
+        if(!hasAccess()) {throw new NotAccessException("you do not have access rights");}
         checkNotFoundWithId(repository.delete(id),id);
     }
 
@@ -47,6 +52,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public void update(Menu menu, int restId) {
+        if(!hasAccess()) {throw new NotAccessException("you do not have access rights");}
         checkNotFoundWithId(repository.save(menu, restId),menu.getId());
     }
 }

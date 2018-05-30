@@ -1,6 +1,8 @@
 package util;
 
+import authorized.AuthorizedUser;
 import exception.NotFoundException;
+import model.Role;
 
 public class ValidationUtil {
 
@@ -25,4 +27,9 @@ public class ValidationUtil {
             throw new NotFoundException(arg);
         }
     }
+    public static boolean hasAccess()
+    {
+        return AuthorizedUser.getRoles().contains(Role.ROLE_ADMIN);
+    }
+
 }

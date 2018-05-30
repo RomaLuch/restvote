@@ -25,10 +25,6 @@ public class AuthorizedUser {
     public static void setRoles(Set<Role> roles) {
         AuthorizedUser.roles = roles;
     }
-/*
-    public static boolean containAdmin(Set<Role> roles)
-    {
-        return  roles.contains(ROLE_ADMIN);
-    }*/
+
 
 }
