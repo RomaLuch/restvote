@@ -1,5 +1,6 @@
 package authorized;
 
+import model.AbstractBaseEntity;
 import model.Role;
 
 import java.util.HashSet;
@@ -11,6 +12,16 @@ import static model.Role.ROLE_USER;
 public class AuthorizedUser {
 
     private static Set<Role> roles = new HashSet<>();
+
+    private static int id = 100004;
+
+    public static int id() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        AuthorizedUser.id = id;
+    }
 
     static
     {

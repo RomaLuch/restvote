@@ -27,6 +27,8 @@ public class DataJpaVoteRepository implements VoteRepository {
     public Vote save(int userId, int restId) {
         User user = crudUserRepository.findById(userId).orElse(null);
         Restaurant restaurant = crudRestaurantRepository.getOne(restId);
+
+        if (repository.findByUserId(userId)!=null) return null;
         return  repository.save(new Vote(user, restaurant));
     }
 

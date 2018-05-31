@@ -1,5 +1,6 @@
 package service;
 
+import exception.NotTwiseException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -57,6 +58,13 @@ public class VoteServiceImplTest {
     @Test
     public void getAll() throws Exception {
         Assert.assertEquals((long)2, (long)service.countByRestaurantId(ULIBKA_ID));
+    }
+
+    @Test(expected = NotTwiseException.class)
+    public void createNotTwice()
+    {
+       // service.delete(100003);
+        service.create(100003,100003);
     }
 
 }

@@ -11,7 +11,7 @@ public interface VoteService {
 
     Vote create(int userId, int restId);
 
-    void delete(int id);
+    void delete(int userId);
 
     Integer countByRestaurantId(int restId);
 

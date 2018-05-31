@@ -18,9 +18,8 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Transactional
     @Modifying
-//    @Query(name = User.DELETE)
     @Query("DELETE FROM Vote v WHERE v.user.id=:user_id")
-    int delete(@Param("user_id") int id);
+    int delete(@Param("user_id") int userId);
 
     @Override
     @Transactional
@@ -28,6 +27,8 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
    // @Override
     Integer countByRestaurantId(int restaurantId);
+
+    Vote findByUserId(int userId);
 
 }
 
