@@ -1,18 +1,13 @@
 package service;
 
-import exception.NotTwiseException;
+import exception.NotVotingTimeException;
 import model.Vote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.VoteRepository;
 
-import java.util.List;
-
 import static util.ValidationUtil.checkNotFoundWithId;
 
-/**
- * Created by RLuchinsky on 30.05.2018.
- */
 @Service
 public class VoteServiceImpl implements VoteService {
 
@@ -28,7 +23,7 @@ public class VoteServiceImpl implements VoteService {
     public Vote create(int userId, int restId) {
         Vote vote = repository.save(userId, restId);
         if (vote == null) {
-            throw new NotTwiseException("You can not vote twice");
+            throw new NotVotingTimeException("You can not vote twice");
         }
         return vote;
     }

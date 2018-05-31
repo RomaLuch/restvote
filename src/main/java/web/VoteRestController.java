@@ -1,21 +1,12 @@
 package web;
 
 import authorized.AuthorizedUser;
-import model.Vote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import service.VoteService;
 
-import java.net.URI;
-import java.util.List;
-
-/**
- * Created by RLuchinsky on 30.05.2018.
- */
 
 @RestController
 @RequestMapping(VoteRestController.VOTE_REST_URL)
@@ -35,21 +26,9 @@ public class VoteRestController {
 
     @PostMapping()
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<Vote> createWithLocation(@PathVariable("restId") int restId) {
-        System.out.println("CREATE");
-        Vote created = service.create(AuthorizedUser.id(), restId);
+    public void addVote(@PathVariable("restId") int restId) {
+         service.create(AuthorizedUser.id(), restId);
 
-        System.out.println(created);
-
-
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.setLocation(uriOfNewResource);
-
-        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/vote/" + restId + "/{id}")
-                .buildAndExpand(created.getId()).toUri();
-
-        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
     @DeleteMapping()

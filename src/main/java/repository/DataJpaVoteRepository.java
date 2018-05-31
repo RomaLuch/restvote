@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Created by RLuchinsky on 30.05.2018.
- */
+import static util.ValidationUtil.isVotingTime;
+
+
 @Repository
 public class DataJpaVoteRepository implements VoteRepository {
 
@@ -25,15 +26,39 @@ public class DataJpaVoteRepository implements VoteRepository {
 
     @Override
     public Vote save(int userId, int restId) {
-        User user = crudUserRepository.findById(userId).orElse(null);
-        Restaurant restaurant = crudRestaurantRepository.getOne(restId);
 
-        if (repository.findByUserId(userId)!=null) return null;
-        return  repository.save(new Vote(user, restaurant));
+        if(!isVotingTime()) {
+            return null;
+        }
+
+        Restaurant restaurant = crudRestaurantRepository.findById(restId).orElse(null);
+        User user = crudUserRepository.findById(userId).orElse(null);
+
+        delete(userId);
+
+        restaurant= crudRestaurantRepository.findById(restId).orElse(null);
+        AtomicInteger rating = new AtomicInteger(restaurant.getRating());
+        int ratingIncrement = rating.incrementAndGet();
+        restaurant.setRating(ratingIncrement);
+        crudRestaurantRepository.save(restaurant);
+
+        return repository.save(new Vote(user, restaurant));
     }
 
     @Override
     public boolean delete(int userId) {
+        Vote vote = repository.findByUserId(userId);
+        System.out.println("VOTE to DELETE = " +vote);
+        if(vote==null)
+        {
+            return false;
+        }
+        else {
+            Restaurant restaurant = crudRestaurantRepository.findById(vote.getRestaurant().getId()).orElse(null);
+            int ratingNew = restaurant.getRating()-1;
+            restaurant.setRating(ratingNew);
+            crudRestaurantRepository.save(restaurant);
+        }
         return repository.delete(userId)!= 0;
     }
 

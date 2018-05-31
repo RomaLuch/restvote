@@ -1,6 +1,6 @@
 package service;
 
-import exception.NotTwiseException;
+import exception.NotVotingTimeException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,7 +12,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
 import static service.RestaurantTestData.EVRASIA_ID;
 import static service.RestaurantTestData.ULIBKA_ID;
 
@@ -60,8 +59,8 @@ public class VoteServiceImplTest {
         Assert.assertEquals((long)2, (long)service.countByRestaurantId(ULIBKA_ID));
     }
 
-    @Test(expected = NotTwiseException.class)
-    public void createNotTwice()
+    @Test(expected = NotVotingTimeException.class)
+    public void createNotVotingTime()
     {
        // service.delete(100003);
         service.create(100003,100003);

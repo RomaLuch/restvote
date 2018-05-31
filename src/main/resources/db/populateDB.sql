@@ -7,7 +7,7 @@ ALTER SEQUENCE global_seq RESTART WITH 100000;
 INSERT INTO restaurants (name, adress, rating) VALUES
   ('Токио', 'Солнечное', 0),
   ('Евразия', 'Сестрорецк', 0),
-  ('Улыбка', 'Зеленогорск', 0);
+  ('Улыбка', 'Зеленогорск', 2);
 
 INSERT INTO users (name, email, password) VALUES
   ('User', 'user@yandex.ru', 'password'),
