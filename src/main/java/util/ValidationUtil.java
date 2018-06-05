@@ -1,9 +1,7 @@
 package util;
 
-import authorized.AuthorizedUser;
 import exception.NotFoundException;
 import exception.NotVotingTimeException;
-import model.Role;
 
 import java.time.LocalTime;
 
@@ -30,10 +28,10 @@ public class ValidationUtil {
             throw new NotFoundException(arg);
         }
     }
-    public static boolean hasAccess()
+/*    public static boolean hasAccess()
     {
         return AuthorizedUser.getRoles().contains(Role.ROLE_ADMIN);
-    }
+    }*/
 
     public static void checkVotingTime()
     {

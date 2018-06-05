@@ -1,6 +1,5 @@
 package authorized;
 
-import model.AbstractBaseEntity;
 import model.Role;
 
 import java.util.HashSet;
