@@ -48,7 +48,6 @@ public class DataJpaVoteRepository implements VoteRepository {
     @Override
     public boolean delete(int userId) {
         Vote vote = repository.findByUserId(userId);
-        System.out.println("VOTE to DELETE = " +vote);
         if(vote==null)
         {
             return false;
