@@ -31,5 +31,6 @@
 <a href="menu/100000/100005">menu/100000/100005</a>
 
 <h2>Тест put, delete, post запросов - можно осуществить с помощи <a href="https://www.soapui.org/" target="_blank" a>SoupUi</a></h2>
+<h2>Так же можно использованть curl команды, из командной строки (примеры команд вы найдете в файле curl.md в папке config проекта)</h2>
 </body>
 </html>

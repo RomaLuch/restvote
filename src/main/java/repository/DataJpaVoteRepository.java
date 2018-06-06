@@ -34,6 +34,8 @@ public class DataJpaVoteRepository implements VoteRepository {
         Restaurant restaurant = crudRestaurantRepository.findById(restId).orElse(null);
         User user = crudUserRepository.findById(userId).orElse(null);
 
+        if(user==null || restaurant==null) {return null;} //todo must throw another exception extend runtime
+
         delete(userId);
 
         restaurant= crudRestaurantRepository.findById(restId).orElse(null);

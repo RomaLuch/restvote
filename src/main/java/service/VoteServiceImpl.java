@@ -23,7 +23,7 @@ public class VoteServiceImpl implements VoteService {
     public Vote create(int userId, int restId) {
         Vote vote = repository.save(userId, restId);
         if (vote == null) {
-            throw new NotVotingTimeException("You can not voting beatween 10:00 and 18:00");
+            throw new NotVotingTimeException("You can not voting beatween 11:00 and 18:00");
         }
         return vote;
     }
