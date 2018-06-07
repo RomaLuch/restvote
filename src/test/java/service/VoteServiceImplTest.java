@@ -12,12 +12,11 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalTime;
+
 import static service.RestaurantTestData.EVRASIA_ID;
 import static service.RestaurantTestData.ULIBKA_ID;
 
-/**
- * Created by RLuchinsky on 30.05.2018.
- */
 
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
@@ -43,6 +42,10 @@ public class VoteServiceImplTest {
 
     @Test
     public void create() throws Exception {
+        if(!(LocalTime.now().isBefore(LocalTime.of(11,00)) && LocalTime.now().isAfter(LocalTime.of(11,00))))
+        {
+            return;
+        }
         Assert.assertEquals((long)0, (long)service.countByRestaurantId(EVRASIA_ID));
         service.create(100003, EVRASIA_ID);
         Assert.assertEquals((long)1, (long)service.countByRestaurantId(EVRASIA_ID));

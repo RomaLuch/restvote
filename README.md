@@ -2,6 +2,10 @@
 1) клонируем проект с гитхаба https://github.com/RomaLuch/restvote
 2) собираем проект выполнив (в папке с проектом ) команду в консоли:
  
+ mvn install
+ 
+ или, чтобы запустить без тестов:
+ 
  mvn install -Dmaven.test.skip=true
  
 3) файл restvote.war деплоим в tomcat (проверялось на версии apache-tomcat-9.0.0.M18)

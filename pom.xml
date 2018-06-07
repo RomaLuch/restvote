@@ -17,6 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <tomcat.version>8.5.29</tomcat.version>
         <spring.version>5.0.4.RELEASE</spring.version>
         <spring-data-jpa.version>2.0.5.RELEASE</spring-data-jpa.version>
 
@@ -98,7 +99,13 @@
             <version>${jackson-json.version}</version>
         </dependency>
 
-
+        <!--Web-->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!--- ORM -->
         <dependency>
