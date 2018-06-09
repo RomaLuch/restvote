@@ -2,6 +2,7 @@ package repository;
 
 import model.Vote;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface VoteRepository {
     // return new
-    Vote save(int userId, int restId);
+    Vote save(int userId, int restId, LocalDateTime date_time);
 
     // false if not found
     boolean delete(int id);

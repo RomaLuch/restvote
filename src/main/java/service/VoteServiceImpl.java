@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.VoteRepository;
 
+import java.time.LocalDateTime;
+
 import static util.ValidationUtil.checkNotFoundWithId;
 
 @Service
@@ -21,7 +23,7 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     public Vote create(int userId, int restId) {
-        Vote vote = repository.save(userId, restId);
+        Vote vote = repository.save(userId, restId, LocalDateTime.now());
         if (vote == null) {
             throw new NotVotingTimeException("You can not voting beatween 11:00 and 18:00");
         }

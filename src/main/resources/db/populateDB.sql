@@ -32,9 +32,9 @@ INSERT INTO menu (name, price, rest_id) VALUES
   ('Греча', 30, 100002),
   ('Говядина', 70, 100002);
 
-INSERT INTO votes (USER_ID, REST_ID) VALUES
-  (100003,100002),
-  (100004,100002);
+INSERT INTO votes (USER_ID, REST_ID, date_time) VALUES
+  (100003,100002, '2018-06-08 09:00:00'),
+  (100004,100002, '2018-06-09 10:00:00');
 
 
 

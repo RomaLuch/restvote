@@ -3,17 +3,23 @@ package repository;
 import model.Restaurant;
 import model.User;
 import model.Vote;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static org.slf4j.LoggerFactory.getLogger;
 import static util.ValidationUtil.isVotingTime;
 
 
 @Repository
 public class DataJpaVoteRepository implements VoteRepository {
+
+
+private static final Logger log = getLogger(DataJpaVoteRepository.class);
 
     @Autowired
     CrudVoteRepository repository;
@@ -25,7 +31,7 @@ public class DataJpaVoteRepository implements VoteRepository {
     private  CrudUserRepository crudUserRepository;
 
     @Override
-    public Vote save(int userId, int restId) {
+    public Vote save(int userId, int restId, LocalDateTime date_time) {
 
         if(!isVotingTime()) {
             return null;
@@ -44,7 +50,11 @@ public class DataJpaVoteRepository implements VoteRepository {
         restaurant.setRating(ratingIncrement);
         crudRestaurantRepository.save(restaurant);
 
-        return repository.save(new Vote(user, restaurant));
+        Vote vote = new Vote(user, restaurant, date_time);
+
+        log.info("Vote to Save = "+ vote);
+
+        return repository.save(vote);
     }
 
     @Override
