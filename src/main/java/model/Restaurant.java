@@ -15,17 +15,14 @@ public class Restaurant extends AbstractNamedEntity {
     @Size(min = 5, max = 100)
     private String adress;
 
-    @Column(name = "rating", columnDefinition = "int default 0")
-    private Integer rating;
-
-    public Restaurant(Integer id, String name, String adress, Integer rating) {
+    public Restaurant(Integer id, String name, String adress) {
         super(id, name);
         this.adress = adress;
-        this.rating = rating;
+
         }
 
     public Restaurant(Restaurant r) {
-        this(r.id, r.name, r.adress, r.rating);
+        this(r.id, r.name, r.adress);
     }
 
     public Restaurant() {
@@ -39,14 +36,6 @@ public class Restaurant extends AbstractNamedEntity {
         this.adress = adress;
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer reiting) {
-        this.rating = reiting;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,15 +43,12 @@ public class Restaurant extends AbstractNamedEntity {
 
         Restaurant that = (Restaurant) o;
 
-        if (adress != null ? !adress.equals(that.adress) : that.adress != null) return false;
-        return rating != null ? rating.equals(that.rating) : that.rating == null;
+        return adress != null ? adress.equals(that.adress) : that.adress == null;
     }
 
     @Override
     public int hashCode() {
-        int result = adress != null ? adress.hashCode() : 0;
-        result = 31 * result + (rating != null ? rating.hashCode() : 0);
-        return result;
+        return adress != null ? adress.hashCode() : 0;
     }
 
     @Override
@@ -71,7 +57,6 @@ public class Restaurant extends AbstractNamedEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", adress='" + adress + '\'' +
-                ", reiting=" + rating +
                 '}';
     }
 }

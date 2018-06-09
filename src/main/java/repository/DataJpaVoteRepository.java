@@ -44,12 +44,6 @@ private static final Logger log = getLogger(DataJpaVoteRepository.class);
 
         delete(userId);
 
-        restaurant= crudRestaurantRepository.findById(restId).orElse(null);
-        AtomicInteger rating = new AtomicInteger(restaurant.getRating());
-        int ratingIncrement = rating.incrementAndGet();
-        restaurant.setRating(ratingIncrement);
-        crudRestaurantRepository.save(restaurant);
-
         Vote vote = new Vote(user, restaurant, date_time);
 
         log.info("Vote to Save = "+ vote);
@@ -64,12 +58,7 @@ private static final Logger log = getLogger(DataJpaVoteRepository.class);
         {
             return false;
         }
-        else {
-            Restaurant restaurant = crudRestaurantRepository.findById(vote.getRestaurant().getId()).orElse(null);
-            int ratingNew = restaurant.getRating()-1;
-            restaurant.setRating(ratingNew);
-            crudRestaurantRepository.save(restaurant);
-        }
+
         return repository.delete(userId)!= 0;
     }
 

@@ -38,8 +38,7 @@
 `curl -s -X PUT -d ' {
          "id": 100002,
          "name": "Updated_Name",
-         "adress": "Updated_adress",
-         "rating": 777
+         "adress": "Updated_adress"
     } ' -H 'Content-Type: application/json' http://localhost:8080/restvote/restaurants/100002 --user user@yandex.ru:password
 `
 
@@ -47,8 +46,7 @@
 `curl -s -X PUT -d ' {
          "id": 100002,
          "name": "Updated_Name",
-         "adress": "Updated_adress",
-         "rating": 777
+         "adress": "Updated_adress"
     } ' -H 'Content-Type: application/json' http://localhost:8080/restvote/restaurants/100002 --user admin@gmail.com:admin
 `
 
@@ -61,16 +59,14 @@
 ####  create Restaurant (Access is denied)
 `curl -s -X POST -d ' {
            "name": "NEW_NAME",
-           "adress": "NEW_Adress",
-           "rating": 777
+           "adress": "NEW_Adress"
      }' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restvote/restaurants --user user@yandex.ru:password
 `
 
 ####  create Restaurant (Access only to Admin)
 `curl -s -X POST -d ' {
            "name": "NEW_NAME",
-           "adress": "NEW_Adress",
-           "rating": 777
+           "adress": "NEW_Adress"
      }' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restvote/restaurants --user admin@gmail.com:admin
 `
 

@@ -4,10 +4,10 @@ DELETE FROM restaurants;
 DELETE FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
-INSERT INTO restaurants (name, adress, rating) VALUES
-  ('Токио', 'Солнечное', 0),
-  ('Евразия', 'Сестрорецк', 0),
-  ('Улыбка', 'Зеленогорск', 2);
+INSERT INTO restaurants (name, adress) VALUES
+  ('Токио', 'Солнечное'),
+  ('Евразия', 'Сестрорецк'),
+  ('Улыбка', 'Зеленогорск');
 
 INSERT INTO users (name, email, password) VALUES
   ('User', 'user@yandex.ru', 'password'),

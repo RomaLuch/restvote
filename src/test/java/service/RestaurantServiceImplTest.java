@@ -38,7 +38,7 @@ public class RestaurantServiceImplTest {
 
     @Test
     public void create() throws Exception {
-        Restaurant restaurant = new Restaurant(null, "New", "newAdress", 0);
+        Restaurant restaurant = new Restaurant(null, "New", "newAdress");
         Restaurant created = service.create(restaurant);
         restaurant.setId(created.getId());
         assertMatch(service.getAll(), TOKIO, EVRASIA, ULIBKA, restaurant);

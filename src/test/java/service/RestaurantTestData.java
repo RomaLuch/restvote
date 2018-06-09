@@ -13,9 +13,9 @@ public class RestaurantTestData {
     public static final int EVRASIA_ID = START_SEQ + 1;
     public static final int ULIBKA_ID = START_SEQ + 2;
 
-    public static Restaurant TOKIO = new Restaurant(TOKIO_ID, "Токио", "Солнечное", 0);
-    public static Restaurant EVRASIA = new Restaurant(EVRASIA_ID, "Евразия", "Сестрорецк", 0);
-    public static Restaurant ULIBKA = new Restaurant(ULIBKA_ID, "Улыбка", "Зеленогорск", 2);
+    public static Restaurant TOKIO = new Restaurant(TOKIO_ID, "Токио", "Солнечное");
+    public static Restaurant EVRASIA = new Restaurant(EVRASIA_ID, "Евразия", "Сестрорецк");
+    public static Restaurant ULIBKA = new Restaurant(ULIBKA_ID, "Улыбка", "Зеленогорск");
 
 
     public static void assertMatch(Restaurant actual, Restaurant expected) {
