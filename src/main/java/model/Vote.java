@@ -57,6 +57,14 @@ public class Vote extends AbstractBaseEntity  {
         this.restaurant = restaurant;
     }
 
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
     @Override
     public String toString() {
         return "Vote{" +
