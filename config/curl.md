@@ -8,7 +8,7 @@
 `curl -s http://localhost:8080/restvote/users/100003 --user admin@gmail.com:admin`
 
 #### delete User 100003
-`curl -s -X DELETE http://localhost:8080/restvote/users/100003 --user user@yandex.ru:password`
+`curl -s -X DELETE http://localhost:8080/restvote/users/100003 --user admin@gmail.com:admin`
 
 #### create User
 `curl -s -X POST -d ' {
@@ -16,7 +16,7 @@
        "email": "CREATED@yandex.ru",
        "password": "CREATEDpassword",
        "roles": ["ROLE_USER"]
-    }' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restvote/users --user user@yandex.ru:password
+    }' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restvote/users --user admin@gmail.com:admin
 `
 #### update User
 `curl -s -X PUT -d ' {
@@ -70,11 +70,11 @@
      }' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restvote/restaurants --user admin@gmail.com:admin
 `
 
-#### get All Menu
-`curl -s http://localhost:8080/restvote/restaurants --user admin@gmail.com:admin`
+#### get All Menu to restaurant with id = 100002
+`curl -s http://localhost:8080/restvote/menu/100002 --user admin@gmail.com:admin`
 
-#### get Menu 100005
-`curl -s http://localhost:8080/restvote/restaurants/100002 --user admin@gmail.com:admin`
+#### get Menu with Id 100005 to restaurant with id
+`curl -s http://localhost:8080/restvote/menu/100002/100005 --user admin@gmail.com:admin`
 
 #### try update Menu 100005 (Access is denied)
 `curl -s -X PUT -d ' {
@@ -94,7 +94,6 @@
 
 #### try delete Menu 100005 (Access is denied)
 `curl -s -X DELETE http://localhost:8080/restvote/menu/100000/100005 --user user@yandex.ru:password`
-
 #### delete Menu 100005 (Access only to Admin)
 `curl -s -X DELETE http://localhost:8080/restvote/menu/100000/100005 --user admin@gmail.com:admin`
 

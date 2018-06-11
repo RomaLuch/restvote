@@ -32,7 +32,7 @@ public class RestaurantRestController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<RestaurantWithVotes> getAll() {
-        return util.VotingUtil.getWithVotes(voteService.getAll());
+        return util.VotingUtil.getWithVotes(voteService.getAll(), service.getAll());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

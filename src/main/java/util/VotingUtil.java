@@ -36,7 +36,7 @@ public class VotingUtil {
 
          }
 */
-    public static List<RestaurantWithVotes> getWithVotes(Collection<Vote> votes)
+    public static List<RestaurantWithVotes> getWithVotes(Collection<Vote> votes, Collection<Restaurant> restaurants)
     {
         List<Vote> currentDayVotes = votes.stream()
                  .filter(v->v.getDateTime().toLocalDate().isEqual(LocalDate.now()))
@@ -47,14 +47,25 @@ public class VotingUtil {
             rating.compute(vote.getRestaurant(), (restaurant, oldValue) -> oldValue == null ? 1 : oldValue + 1);
         }
 
-        List<RestaurantWithVotes> result = rating.entrySet()
+        Map<Restaurant, Integer> restaurantsWithRating = new HashMap<>();
+
+        for (Restaurant restaurant: restaurants)
+        {
+            restaurantsWithRating.put(restaurant,0);
+        }
+
+        for (Map.Entry<Restaurant, Integer> entry: rating.entrySet())
+        {
+            restaurantsWithRating.put(entry.getKey(),entry.getValue());
+        }
+
+        List<RestaurantWithVotes> restaurantWithVotes = restaurantsWithRating.entrySet()
                 .stream()
                 .map(r ->
-                createWithVotes(r.getKey(), r.getValue()))
+                        createWithVotes(r.getKey(), r.getValue()))
                 .collect(Collectors.toList());
-        ;
 
-return result;
+return restaurantWithVotes;
     }
 
     public static RestaurantWithVotes createWithVotes(Restaurant restaurant, Integer amountOfVoting) {
