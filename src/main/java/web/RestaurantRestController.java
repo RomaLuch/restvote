@@ -9,6 +9,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import service.RestaurantService;
+import service.VoteService;
+import to.RestaurantWithVotes;
 
 import java.net.URI;
 import java.util.List;
@@ -23,11 +25,14 @@ public class RestaurantRestController {
     @Autowired
     private RestaurantService service;
 
+    @Autowired
+    private VoteService voteService;
+
     static final String RESTAURANT_REST_URL = "/restaurants";
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Restaurant> getAll() {
-        return service.getAll();
+    public List<RestaurantWithVotes> getAll() {
+        return util.VotingUtil.getWithVotes(voteService.getAll());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

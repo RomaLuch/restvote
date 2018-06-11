@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.slf4j.LoggerFactory.getLogger;
 import static util.ValidationUtil.isVotingTime;
@@ -63,7 +62,7 @@ private static final Logger log = getLogger(DataJpaVoteRepository.class);
     }
 
     @Override
-    public Integer getAll(int restId) {
-        return repository.countByRestaurantId(restId);
+    public List<Vote> getAll() {
+        return repository.findAll();
     }
 }

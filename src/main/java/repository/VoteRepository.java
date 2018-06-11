@@ -17,6 +17,6 @@ public interface VoteRepository {
 
     // null if not found
 
-    Integer getAll(int restId);
+    List<Vote> getAll();
 }
 

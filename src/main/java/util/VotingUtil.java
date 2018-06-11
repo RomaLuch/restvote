@@ -16,14 +16,15 @@ import java.util.stream.Collectors;
  */
 public class VotingUtil {
 
-/*    public static void main(String[] args) {
+/*
+    public static void main(String[] args) {
         User first = new User(1,"Roma","123","123", Role.ROLE_ADMIN);
         User second = new User(2,"Roma1","1234","1234", Role.ROLE_ADMIN);
         User third = new User(3,"Roma2","12345","12345", Role.ROLE_ADMIN);
         Restaurant restaurant = new Restaurant(1,"1","1");
         Vote vote1 = new Vote(first, restaurant, LocalDateTime.now());
         Vote vote2 = new Vote(second, restaurant, LocalDateTime.now());
-        Vote vote3 = new Vote(first, restaurant, LocalDateTime.of(2018,06,9,06,00));
+        Vote vote3 = new Vote(first, restaurant, LocalDateTime.of(2018,06,10,06,00));
 
         List<Vote> votes = new ArrayList<>();
         votes.add(vote1);
@@ -32,9 +33,10 @@ public class VotingUtil {
 
         getWithVotes(votes).stream().forEach(System.out::println);
 
-         }*/
 
-    public static List<RestaurantWithVotes> getWithVotes(Collection<Vote> votes, Collection<Restaurant> restaurants)
+         }
+*/
+    public static List<RestaurantWithVotes> getWithVotes(Collection<Vote> votes)
     {
         List<Vote> currentDayVotes = votes.stream()
                  .filter(v->v.getDateTime().toLocalDate().isEqual(LocalDate.now()))
@@ -45,32 +47,18 @@ public class VotingUtil {
             rating.compute(vote.getRestaurant(), (restaurant, oldValue) -> oldValue == null ? 1 : oldValue + 1);
         }
 
-        final List<RestaurantWithVotes> restaurantWithVotes = new ArrayList<>();
+        List<RestaurantWithVotes> result = rating.entrySet()
+                .stream()
+                .map(r ->
+                createWithVotes(r.getKey(), r.getValue()))
+                .collect(Collectors.toList());
+        ;
 
-/*        for (Restaurant restaurant: restaurants)
-        {
-
-        }*/
-
-/*        for (Map.Entry<Restaurant, Integer> entry: rating.entrySet()) {
-            if(restaurants.contains(entry.getKey())) {
-                restaurantWithVotes.add(createWithVotes(entry.getKey(), entry.getValue()));
-            }
-        }*/
-
-/*        final List<RestaurantWithVotes> result = new ArrayList<>();
-        for (Restaurant restaurant: restaurants) {
-            if(restaurantWithVotes.contains(restaurant))
-            {
-                result.add(re)
-            }
-        }
-        */
-        return restaurantWithVotes;
+return result;
     }
 
     public static RestaurantWithVotes createWithVotes(Restaurant restaurant, Integer amountOfVoting) {
-        return new RestaurantWithVotes(restaurant.getName(), restaurant.getAdress(), amountOfVoting);
+        return new RestaurantWithVotes(restaurant.getId(),restaurant.getName(), restaurant.getAdress(), amountOfVoting);
     }
     }
 

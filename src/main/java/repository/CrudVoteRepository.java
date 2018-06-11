@@ -9,11 +9,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
-/**
- * Created by RLuchinsky on 30.05.2018.
- */
+
 public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Transactional
@@ -25,8 +22,8 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     @Transactional
     Vote save(Vote vote);
 
-   // @Override
-    Integer countByRestaurantId(int restaurantId);
+    @Override
+    List<Vote> findAll();
 
     Vote findByUserId(int userId);
 

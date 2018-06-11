@@ -10,6 +10,11 @@ public class RestaurantWithVotes extends BaseTo {
     private Integer amountOfVoting;
 
     public RestaurantWithVotes(String name, String adress, Integer amountOfVoting) {
+            this(null,name,adress,amountOfVoting);
+    }
+
+    public RestaurantWithVotes(Integer id,String name, String adress, Integer amountOfVoting) {
+        this.id = id;
         this.name = name;
         this.adress = adress;
         this.amountOfVoting = amountOfVoting;

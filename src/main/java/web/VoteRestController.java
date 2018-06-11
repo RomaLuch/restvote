@@ -1,11 +1,14 @@
 package web;
 
 import authorized.AuthorizedUser;
+import model.Vote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import service.VoteService;
+
+import java.util.List;
 
 
 @RestController
@@ -18,9 +21,8 @@ public class VoteRestController {
     static final String VOTE_REST_URL = "/vote/{restId}";
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Integer getAll(@PathVariable("restId") int restId) {
-        System.out.println("GET");
-        return service.countByRestaurantId(restId);
+    public List<Vote> getAll() {
+        return service.getAll();
     }
 
 

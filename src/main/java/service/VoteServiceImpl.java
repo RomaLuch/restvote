@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import repository.VoteRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static util.ValidationUtil.checkNotFoundWithId;
 
@@ -35,9 +36,9 @@ public class VoteServiceImpl implements VoteService {
         checkNotFoundWithId(repository.delete(userId), userId);
     }
 
+
     @Override
-    public Integer countByRestaurantId(int restId)
-    {
-        return repository.getAll(restId);
+    public List<Vote> getAll() {
+        return repository.getAll();
     }
 }

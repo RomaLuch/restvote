@@ -13,6 +13,6 @@ public interface VoteService {
 
     void delete(int userId);
 
-    Integer countByRestaurantId(int restId);
+    List<Vote> getAll();
 
 }
