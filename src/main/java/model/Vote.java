@@ -1,17 +1,13 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-/**
- * Created by RLuchinsky on 30.05.2018.
- */
 
 @Entity
 @Table(name = "votes")
@@ -29,13 +25,13 @@ public class Vote extends AbstractBaseEntity  {
 
     @Column(name = "date_time", nullable = false)
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime dateTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
-    public Vote(User user, Restaurant restaurant, LocalDateTime dateTime) {
+    public Vote(User user, Restaurant restaurant, LocalDate date) {
         this.user = user;
         this.restaurant = restaurant;
-        this.dateTime = dateTime;
+        this.date = date;
     }
 
     public Vote() {
@@ -57,12 +53,12 @@ public class Vote extends AbstractBaseEntity  {
         this.restaurant = restaurant;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override
@@ -70,7 +66,7 @@ public class Vote extends AbstractBaseEntity  {
         return "Vote{" +
                 "user=" + user +
                 ", restaurant=" + restaurant +
-                ", date_time=" + dateTime +
+                ", date_time=" + date +
                 '}';
     }
 }

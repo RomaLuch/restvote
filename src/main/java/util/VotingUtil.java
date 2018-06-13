@@ -1,13 +1,10 @@
 package util;
 
 import model.Restaurant;
-import model.Role;
-import model.User;
 import model.Vote;
 import to.RestaurantWithVotes;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -39,7 +36,7 @@ public class VotingUtil {
     public static List<RestaurantWithVotes> getWithVotes(Collection<Vote> votes, Collection<Restaurant> restaurants)
     {
         List<Vote> currentDayVotes = votes.stream()
-                 .filter(v->v.getDateTime().toLocalDate().isEqual(LocalDate.now()))
+                 .filter(v->v.getDate().isEqual(LocalDate.now()))
                  .collect(Collectors.toList());
 
         Map<Restaurant, Integer> rating = new HashMap<>();

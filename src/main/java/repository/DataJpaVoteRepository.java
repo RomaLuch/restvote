@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -30,29 +30,34 @@ private static final Logger log = getLogger(DataJpaVoteRepository.class);
     private  CrudUserRepository crudUserRepository;
 
     @Override
-    public Vote save(int userId, int restId, LocalDateTime date_time) {
+    public Vote save(int userId, int restId, LocalDate date) {
 
         if(!isVotingTime()) {
             return null;
         }
 
         Restaurant restaurant = crudRestaurantRepository.findById(restId).orElse(null);
-        User user = crudUserRepository.findById(userId).orElse(null);
+        if(restaurant==null) {return null;}
 
-        if(user==null || restaurant==null) {return null;} //todo must throw another exception extend runtime
-
-        delete(userId);
-
-        Vote vote = new Vote(user, restaurant, date_time);
-
-        log.info("Vote to Save = "+ vote);
-
+        Vote vote = repository.findByUserIdAndDate(userId, LocalDate.now());
+        if(!(vote==null))
+        {
+            vote.setRestaurant(restaurant);
+        }
+        else {
+            User user = crudUserRepository.findById(userId).orElse(null);
+            if (user == null) {
+                return null;
+            } //todo must throw another exception extend runtime
+            vote = new Vote(user, restaurant, date);
+        }
+        log.info("Vote to Save = {}", vote);
         return repository.save(vote);
     }
-
+//todo - refactor - must remove it method
     @Override
     public boolean delete(int userId) {
-        Vote vote = repository.findByUserId(userId);
+        Vote vote = repository.findByUserIdAndDate(userId,LocalDate.now());
         if(vote==null)
         {
             return false;
